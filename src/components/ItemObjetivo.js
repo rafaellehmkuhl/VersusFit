@@ -4,8 +4,8 @@ class ItemObjetivo extends React.Component {
   render() {
     return (
       <div>
-        <li>{this.props.itemName}</li>
-        <input type="checkbox" name="" id="" />
+        <input type="checkbox" name="" id={this.props.itemName} />
+        <label for={this.props.itemName}>{this.props.itemName}</label>
       </div>
     );
   }
