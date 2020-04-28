@@ -20,5 +20,6 @@ no back-end e MongoDB como database. Futuramente sera incorporado Redux para
 o gerenciamento de estados e pretende-se trocar o back-end para Django.
 
 ## Estado atual
-Atualmente a aplicacao possui apenas os elementos iniciais, sem funcionamento,
-sem design, sem autenticacao. Basicamente eh soh a cara, e nao funciona.
+Atualmente a aplicacao possui apenas os elementos iniciais,
+sem design, sem autenticacao. 
+As mudancas realizadas pelo usuario (adicao de objetivos) ainda nao ficam guardadas apos o encerramento da aplicacao.
