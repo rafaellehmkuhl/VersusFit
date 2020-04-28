@@ -18,3 +18,7 @@ conhecimentos recem-adquiridos na area de aplicacoes web.
 Este aplicativo atualmente eh construido utilizando React no front-end, NodeJS
 no back-end e MongoDB como database. Futuramente sera incorporado Redux para
 o gerenciamento de estados e pretende-se trocar o back-end para Django.
+
+## Estado atual
+Atualmente a aplicacao possui apenas os elementos iniciais, sem funcionamento,
+sem design, sem autenticacao. Basicamente eh soh a cara, e nao funciona.
