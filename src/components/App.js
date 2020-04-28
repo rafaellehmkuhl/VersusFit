@@ -22,8 +22,8 @@ function App() {
       <SemanaSelector listaSemanas={listaSemanas} />
       <div>
         <h2>Competidores</h2>
-        <CardCompetidor competidor="Rafael" listaObjetivos={listaRafael} />
-        <CardCompetidor competidor="Emily" listaObjetivos={listaEmily} />
+        <CardCompetidor nomeCompetidor="Rafael" listaObjetivos={listaRafael} />
+        <CardCompetidor nomeCompetidor="Emily" listaObjetivos={listaEmily} />
       </div>
     </div>
   );
