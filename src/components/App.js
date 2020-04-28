@@ -2,8 +2,6 @@ import React from "react";
 import SemanaSelector from "./SemanaSelector";
 import CardCompetidor from "./CardCompetidor";
 
-var listaSemanas = ["Semana 1", "Semana 2"];
-
 class App extends React.Component {
   state = {
     listaCompetidor1: [
@@ -39,7 +37,6 @@ class App extends React.Component {
     return (
       <div>
         <h1>Projeto Quarentena Verao</h1>
-        <SemanaSelector listaSemanas={listaSemanas} />
         <div>
           <h2>Competidores</h2>
           <CardCompetidor
