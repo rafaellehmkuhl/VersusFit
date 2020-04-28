@@ -13,11 +13,13 @@ var listaRafael = [
 
 var listaEmily = ["Corrida", "Corrida", "Ginastica", "Ginastica", "Meatless"];
 
+var listaSemanas = ["Semana 1", "Semana 2"];
+
 function App() {
   return (
     <div>
       <h1>Projeto Quarentena Verao</h1>
-      <SemanaSelector />
+      <SemanaSelector listaSemanas={listaSemanas} />
       <div>
         <h2>Competidores</h2>
         <CardCompetidor competidor="Rafael" listaObjetivos={listaRafael} />

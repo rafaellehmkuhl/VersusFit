@@ -1,12 +1,15 @@
 import React from "react";
 
-function SemanaSelector() {
-  return (
-    <select>
-      <option value="semana1">Semana 1</option>
-      <option value="semana2">Semana 2</option>
-    </select>
-  );
+class SemanaSelector extends React.Component {
+  render() {
+    return (
+      <select>
+        {this.props.listaSemanas.map((semana) => {
+          return <option value={semana}>{semana}</option>;
+        })}
+      </select>
+    );
+  }
 }
 
 export default SemanaSelector;
