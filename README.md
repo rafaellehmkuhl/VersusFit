@@ -5,6 +5,8 @@ As rotinas de desafios, por sua vez consistem em rotinas de exercicios e
 alimentacao pre-estipuladas entre os competidores, que precisam cumprir a rotina
 ou arcar com a perda da aposta financeira.
 
+![App screenshot](https://i.imgur.com/P15BJqR.png)
+
 ## Objetivos
 
 ### do Projeto
