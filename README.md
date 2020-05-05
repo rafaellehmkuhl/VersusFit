@@ -1,27 +1,20 @@
 # Projeto Quarentena-Verao
 O Projeto Quarentena-Verao consiste de um aplicativo para acompanhamento das
 rotinas de desafios.
-As rotinas de desafios, por sua vez consistem em rotinas de exercicios e
-alimentacao pre-estipuladas entre os competidores, que precisam cumprir a rotina
-ou arcar com a perda da aposta financeira.
+As rotinas de desafios, por sua vez consistem em rotinas de exercicios e alimentacao pre-estipuladas entre os competidores, que precisam cumprir a rotina ou arcar com a perda da aposta financeira.
 
 ![App screenshot](https://i.imgur.com/P15BJqR.png)
 
 ## Objetivos
 
 ### do Projeto
-Estimular a construcao de uma rotina de exercicios e alimentacao visando uma
-vida mais saudavel.
+Estimular a construcao de uma rotina de exercicios e alimentacao visando uma vida mais saudavel.
 ### do Aplicativo
-Para o autor, este aplicativo serve como plataforma de aplicacao dos
-conhecimentos recem-adquiridos na area de aplicacoes web.
+Para o autor, este aplicativo serve como plataforma de aplicacao dos conhecimentos recem-adquiridos na area de aplicacoes web.
 
 ## Stack
-Este aplicativo atualmente eh construido utilizando React no front-end, NodeJS
-no back-end e MongoDB como database. Futuramente sera incorporado Redux para
-o gerenciamento de estados e pretende-se trocar o back-end para Django.
+Este aplicativo atualmente eh construido utilizando React no front-end (puro, ainda sem Redux), se alimenta de uma API RestFul criada sobre Flask que armazena os dados em um banco PostgresSQL. Tanto front-end quanto api se encontram servidos em um ambiente Heroku.
 
 ## Estado atual
-Atualmente a aplicacao possui apenas os elementos iniciais,
-sem design, sem autenticacao. 
-As mudancas realizadas pelo usuario (adicao de objetivos) ainda nao ficam guardadas apos o encerramento da aplicacao.
+Atualmente a aplicacao se encontra funcional, porem com nomes dos usuarios fixados e sem autenticacao. 
+As mudancas realizadas pelo usuario sao comunicadas para um banco de dados atraves de uma API e persistem de uma sessao para outra.
