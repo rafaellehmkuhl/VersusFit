@@ -1,4 +1,5 @@
 import React from "react";
+import { Input, Button } from "semantic-ui-react";
 
 class ButtonAdicionarObjetivo extends React.Component {
   state = { term: "" };
@@ -18,12 +19,17 @@ class ButtonAdicionarObjetivo extends React.Component {
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
-        <input
+        <Input
           type="text"
           value={this.state.term}
           onChange={this.onFormChange}
           placeholder="Novo objetivo"
-        />
+          action
+          fluid
+        >
+          <input />
+          <Button type="submit" icon="add" color="teal"></Button>
+        </Input>
       </form>
     );
   }

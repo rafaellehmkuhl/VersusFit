@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, Checkbox, Segment } from "semantic-ui-react";
 
 class ItemObjetivo extends React.Component {
   state = { status: this.props.item.status };
@@ -11,9 +12,7 @@ class ItemObjetivo extends React.Component {
       },
       this.props.item.id
     );
-    this.setState({
-      status: !this.state.status,
-    });
+    this.setState((prevState) => ({ status: !prevState.status }));
   };
 
   onObjetivoDelete = (event) => {
@@ -23,16 +22,22 @@ class ItemObjetivo extends React.Component {
 
   render() {
     return (
-      <div>
-        <input
-          type="checkbox"
+      <Segment attached>
+        <Checkbox
           id={this.props.item.id}
           checked={this.state.status}
           onChange={this.onObjetivoChange}
+          label={this.props.item.tarefa}
+          toggle
         />
-        <label htmlFor={this.props.item.id}>{this.props.item.tarefa}</label>
-        <button onClick={this.onObjetivoDelete}>Del</button>
-      </div>
+        <Button
+          color="red"
+          onClick={this.onObjetivoDelete}
+          icon="remove"
+          floated="right"
+          size="mini"
+        />
+      </Segment>
     );
   }
 }
