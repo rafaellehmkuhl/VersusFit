@@ -2,21 +2,47 @@ import React from "react";
 import ItemObjetivo from "./ItemObjetivo";
 import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
 import { Segment, Divider, Container } from "semantic-ui-react";
+import axios from "axios";
+
+const API_URL = "https://projeto-quarentena-verao-api.herokuapp.com/";
 
 class CardCompetidor extends React.Component {
-  handleNovoObjetivo = (novoObjetivoTarefa) => {
-    this.props.onNovoObjetivo({
-      tarefa: novoObjetivoTarefa,
-      competidor: this.props.nomeCompetidor,
+  state = {
+    goals: [],
+  };
+
+  componentDidMount() {
+    this.updateObjetivosList();
+  }
+
+  updateObjetivosList = () => {
+    axios.get(`${API_URL}${this.props.nomeCompetidor}`).then((res) => {
+      this.setState({
+        goals: res.data,
+      });
     });
   };
 
-  handleObjetivoChange = (item, item_id) => {
-    this.props.atObjetivoChange(item, item_id);
+  postNewObjetivo = (goalAction) => {
+    var goal = {
+      tarefa: goalAction,
+      competidor: this.props.nomeCompetidor,
+    };
+    axios.post(`${API_URL}`, goal).then((res) => {
+      this.updateObjetivosList();
+    });
   };
 
-  handleObjetivoDelete = (item_id) => {
-    this.props.atObjetivoDelete(item_id);
+  changeObjetivo = (item, item_id) => {
+    axios.patch(`${API_URL}${item_id}`, item).then((res) => {
+      this.updateObjetivosList();
+    });
+  };
+
+  deleteObjetivo = (item_id) => {
+    axios.delete(`${API_URL}${item_id}`).then((res) => {
+      this.updateObjetivosList();
+    });
   };
 
   render() {
@@ -25,18 +51,18 @@ class CardCompetidor extends React.Component {
         <Segment attached="top" textAlign="center">
           {this.props.nomeCompetidor}
         </Segment>
-        {this.props.listaObjetivos.map((item) => {
+        {this.state.goals.map((item) => {
           return (
             <ItemObjetivo
               key={item.id}
               item={item}
-              onObjetivoChange={this.handleObjetivoChange}
-              onObjetivoDelete={this.handleObjetivoDelete}
+              onObjetivoChange={this.changeObjetivo}
+              onObjetivoDelete={this.deleteObjetivo}
             />
           );
         })}
         <Divider />
-        <ButtonAdicionarObjetivo onFormSubmit={this.handleNovoObjetivo} />
+        <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} />
       </Container>
     );
   }
