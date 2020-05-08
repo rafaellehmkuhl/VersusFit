@@ -1,5 +1,4 @@
 import React from "react";
-// import SemanaSelector from "./SemanaSelector";
 import CardCompetidor from "./CardCompetidor";
 import {
   Container,
@@ -21,7 +20,7 @@ class App extends React.Component {
           <Container centered style={{ padding: "1em" }}>
             <Header as="h1" attached="top" block textAlign="center">
               <Icon name="heart outline" />
-              Projeto Quarentena Verao
+              Projeto Quarentena-Verao
             </Header>
 
             <Divider />
