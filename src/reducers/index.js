@@ -1,18 +1,21 @@
 import { combineReducers } from "redux";
 
-const goalsReducer = () => {
-  return [];
-};
+const goalsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "FETCH_GOALS":
+      const newState = Object.assign({}, state);
+      delete newState.challengerName;
+      return Object.assign(newState, action.payload);
 
-const toggledGoalReducer = (toggledGoal = null, action) => {
-  if (action.type === "GOAL_TOGGLED") {
-    return action.payload;
+    case "DELETE_GOAL":
+      console.log("deletando");
+      return Object.assign({}, action.payload);
+
+    default:
+      return state;
   }
-
-  return toggledGoal;
 };
 
 export default combineReducers({
   goals: goalsReducer,
-  toggledGoal: toggledGoalReducer,
 });
