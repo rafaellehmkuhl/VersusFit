@@ -2,21 +2,45 @@ import React from "react";
 import ItemObjetivo from "./ItemObjetivo";
 import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
 import { Segment, Divider, Container } from "semantic-ui-react";
+import axios from "axios";
+import { connect } from "react-redux";
+import {
+  fetchChallengerGoals,
+  deleteChallengerGoal,
+  toggleChallengerGoal,
+  addChallengerGoal,
+} from "../actions";
 
 class CardCompetidor extends React.Component {
-  handleNovoObjetivo = (novoObjetivoTarefa) => {
-    this.props.onNovoObjetivo({
-      tarefa: novoObjetivoTarefa,
-      competidor: this.props.nomeCompetidor,
+  componentDidMount() {
+    this.props.fetchChallengerGoals(this.props.nomeCompetidor);
+  }
+
+  renderGoalsList() {
+    return this.props.goals.map((item) => {
+      return (
+        <ItemObjetivo
+          key={item.id}
+          item={item}
+          challengerName={this.props.nomeCompetidor}
+          onObjetivoChange={this.changeObjetivo}
+          onObjetivoDelete={this.deleteObjetivo}
+        />
+      );
     });
+  }
+
+  postNewObjetivo = (goal_tarefa) => {
+    console.log(goal_tarefa);
+    this.props.addChallengerGoal(goal_tarefa, this.props.nomeCompetidor);
   };
 
-  handleObjetivoChange = (item, item_id) => {
-    this.props.atObjetivoChange(item, item_id);
+  changeObjetivo = (item_id) => {
+    this.props.toggleChallengerGoal(item_id, this.props.nomeCompetidor);
   };
 
-  handleObjetivoDelete = (item_id) => {
-    this.props.atObjetivoDelete(item_id);
+  deleteObjetivo = (item_id) => {
+    this.props.deleteChallengerGoal(item_id, this.props.nomeCompetidor);
   };
 
   render() {
@@ -25,21 +49,25 @@ class CardCompetidor extends React.Component {
         <Segment attached="top" textAlign="center">
           {this.props.nomeCompetidor}
         </Segment>
-        {this.props.listaObjetivos.map((item) => {
-          return (
-            <ItemObjetivo
-              key={item.id}
-              item={item}
-              onObjetivoChange={this.handleObjetivoChange}
-              onObjetivoDelete={this.handleObjetivoDelete}
-            />
-          );
-        })}
+        {this.renderGoalsList()}
         <Divider />
-        <ButtonAdicionarObjetivo onFormSubmit={this.handleNovoObjetivo} />
+        <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} />
       </Container>
     );
   }
 }
 
-export default CardCompetidor;
+const mapStateToProps = (state, ownProps) => {
+  if (ownProps.nomeCompetidor in state.goals) {
+    return { goals: state.goals[ownProps.nomeCompetidor] };
+  }
+
+  return { goals: [] };
+};
+
+export default connect(mapStateToProps, {
+  fetchChallengerGoals,
+  deleteChallengerGoal,
+  toggleChallengerGoal,
+  addChallengerGoal,
+})(CardCompetidor);

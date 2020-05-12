@@ -1,18 +1,11 @@
 import React from "react";
 import { Button, Checkbox, Segment } from "semantic-ui-react";
+import { connect } from "react-redux";
 
 class ItemObjetivo extends React.Component {
-  state = { status: this.props.item.status };
-
   onObjetivoChange = (event) => {
     event.preventDefault();
-    this.props.onObjetivoChange(
-      {
-        status: !this.state.status,
-      },
-      this.props.item.id
-    );
-    this.setState((prevState) => ({ status: !prevState.status }));
+    this.props.onObjetivoChange(this.props.item.id);
   };
 
   onObjetivoDelete = (event) => {
@@ -25,7 +18,7 @@ class ItemObjetivo extends React.Component {
       <Segment attached>
         <Checkbox
           id={this.props.item.id}
-          checked={this.state.status}
+          checked={this.props.item.status}
           onChange={this.onObjetivoChange}
           label={this.props.item.tarefa}
           toggle
@@ -42,4 +35,12 @@ class ItemObjetivo extends React.Component {
   }
 }
 
-export default ItemObjetivo;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    item: state.goals[ownProps.challengerName].filter(
+      (element) => element.id === ownProps.item.id
+    )[0],
+  };
+};
+
+export default connect(mapStateToProps)(ItemObjetivo);
