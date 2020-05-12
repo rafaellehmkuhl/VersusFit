@@ -21,7 +21,7 @@ class ItemObjetivo extends React.Component {
           checked={this.props.item.status}
           onChange={this.onObjetivoChange}
           label={this.props.item.tarefa}
-          toggle
+          // toggle
         />
         <Button
           color="red"
