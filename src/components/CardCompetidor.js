@@ -1,8 +1,7 @@
 import React from "react";
 import ItemObjetivo from "./ItemObjetivo";
 import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
-import { Segment, Divider, Container } from "semantic-ui-react";
-import axios from "axios";
+import { Segment, Divider } from "semantic-ui-react";
 import { connect } from "react-redux";
 import {
   fetchChallengerGoals,
@@ -45,14 +44,14 @@ class CardCompetidor extends React.Component {
 
   render() {
     return (
-      <Container>
+      <div>
         <Segment attached="top" textAlign="center">
           {this.props.nomeCompetidor}
         </Segment>
         {this.renderGoalsList()}
         <Divider />
         <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} />
-      </Container>
+      </div>
     );
   }
 }
