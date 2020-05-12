@@ -8,6 +8,7 @@ import {
   fetchChallengerGoals,
   deleteChallengerGoal,
   toggleChallengerGoal,
+  addChallengerGoal,
 } from "../actions";
 
 class CardCompetidor extends React.Component {
@@ -29,15 +30,10 @@ class CardCompetidor extends React.Component {
     });
   }
 
-  // postNewObjetivo = (goalAction) => {
-  //   var goal = {
-  //     tarefa: goalAction,
-  //     competidor: this.props.nomeCompetidor,
-  //   };
-  //   axios.post(`${API_URL}`, goal).then((res) => {
-  //     this.updateObjetivosList();
-  //   });
-  // };
+  postNewObjetivo = (goal_tarefa) => {
+    console.log(goal_tarefa);
+    this.props.addChallengerGoal(goal_tarefa, this.props.nomeCompetidor);
+  };
 
   changeObjetivo = (item_id) => {
     this.props.toggleChallengerGoal(item_id, this.props.nomeCompetidor);
@@ -54,8 +50,8 @@ class CardCompetidor extends React.Component {
           {this.props.nomeCompetidor}
         </Segment>
         {this.renderGoalsList()}
-        {/* <Divider /> */}
-        {/* <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} /> */}
+        <Divider />
+        <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} />
       </Container>
     );
   }
@@ -73,4 +69,5 @@ export default connect(mapStateToProps, {
   fetchChallengerGoals,
   deleteChallengerGoal,
   toggleChallengerGoal,
+  addChallengerGoal,
 })(CardCompetidor);

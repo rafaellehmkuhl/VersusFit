@@ -11,6 +11,17 @@ export const fetchChallengerGoals = (challengerName) => async (dispatch) => {
   });
 };
 
+export const addChallengerGoal = (goal_tarefa, challengerName) => async (
+  dispatch
+) => {
+  var goal = {
+    tarefa: goal_tarefa,
+    competidor: challengerName,
+  };
+  await goalsAPI.post(`/`, goal);
+  dispatch(fetchChallengerGoals(challengerName));
+};
+
 export const deleteChallengerGoal = (goal_id, challengerName) => async (
   dispatch
 ) => {

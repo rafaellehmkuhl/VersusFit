@@ -3,8 +3,6 @@ import { Button, Checkbox, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class ItemObjetivo extends React.Component {
-  state = { status: this.props.item.status };
-
   onObjetivoChange = (event) => {
     event.preventDefault();
     this.props.onObjetivoChange(this.props.item.id);
@@ -20,7 +18,7 @@ class ItemObjetivo extends React.Component {
       <Segment attached>
         <Checkbox
           id={this.props.item.id}
-          checked={this.props.status}
+          checked={this.props.item.status}
           onChange={this.onObjetivoChange}
           label={this.props.item.tarefa}
           toggle
