@@ -4,7 +4,11 @@ import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
 import { Segment, Divider, Container } from "semantic-ui-react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { fetchChallengerGoals, deleteChallengerGoal } from "../actions";
+import {
+  fetchChallengerGoals,
+  deleteChallengerGoal,
+  toggleChallengerGoal,
+} from "../actions";
 
 class CardCompetidor extends React.Component {
   componentDidMount() {
@@ -17,7 +21,8 @@ class CardCompetidor extends React.Component {
         <ItemObjetivo
           key={item.id}
           item={item}
-          // onObjetivoChange={this.changeObjetivo}
+          challengerName={this.props.nomeCompetidor}
+          onObjetivoChange={this.changeObjetivo}
           onObjetivoDelete={this.deleteObjetivo}
         />
       );
@@ -34,11 +39,9 @@ class CardCompetidor extends React.Component {
   //   });
   // };
 
-  // changeObjetivo = (item, item_id) => {
-  //   axios.patch(`${API_URL}${item_id}`, item).then((res) => {
-  //     this.updateObjetivosList();
-  //   });
-  // };
+  changeObjetivo = (item_id) => {
+    this.props.toggleChallengerGoal(item_id, this.props.nomeCompetidor);
+  };
 
   deleteObjetivo = (item_id) => {
     this.props.deleteChallengerGoal(item_id, this.props.nomeCompetidor);
@@ -69,4 +72,5 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
   fetchChallengerGoals,
   deleteChallengerGoal,
+  toggleChallengerGoal,
 })(CardCompetidor);

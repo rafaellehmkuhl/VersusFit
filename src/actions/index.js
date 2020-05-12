@@ -16,5 +16,16 @@ export const deleteChallengerGoal = (goal_id, challengerName) => async (
 ) => {
   await goalsAPI.delete(`/${goal_id}`);
   dispatch(fetchChallengerGoals(challengerName));
-  console.log("deletado e despachado");
+};
+
+export const toggleChallengerGoal = (goal_id, challengerName) => async (
+  dispatch,
+  getState
+) => {
+  const previousStatus = getState().goals[challengerName].filter(
+    (element) => element.id === goal_id
+  )[0].status;
+  const newGoalState = { status: !previousStatus };
+  await goalsAPI.patch(`/${goal_id}`, newGoalState);
+  dispatch(fetchChallengerGoals(challengerName));
 };
