@@ -9,7 +9,13 @@ export default class Navbar extends Component {
       <div>
         <Menu>
           <Link to="/">
-            <Menu.Item name="home" />
+            <Menu.Item name="Home" />
+          </Link>
+          <Link to="/rafa-emily">
+            <Menu.Item name="RafaEmily" />
+          </Link>
+          <Link to="/danilo-bia">
+            <Menu.Item name="Danilo-Bia" />
           </Link>
           <Menu.Menu position="right">
             <GoogleAuth />

@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import { Segment, Divider } from "semantic-ui-react";
 import ChallengeTable from "./ChallengeTable";
+import ChallengeTable2 from "./ChallengeTable2";
 import LoginScreen from "./LoginScreen";
 import RegisterScreen from "./RegisterScreen";
 
@@ -15,7 +16,8 @@ class App extends React.Component {
             <Segment>
               <Navbar />
               <Divider />
-              <Route path="/" exact component={ChallengeTable} />
+              <Route path="/rafa-emily" exact component={ChallengeTable} />
+              <Route path="/danilo-bia" exact component={ChallengeTable2} />
               <Route path="/login" exact component={LoginScreen} />
               <Route path="/register" exact component={RegisterScreen} />
             </Segment>
