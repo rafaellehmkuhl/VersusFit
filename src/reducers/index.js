@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import authReducer from "./authReducer";
 
 const goalsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -17,5 +18,6 @@ const goalsReducer = (state = {}, action) => {
 };
 
 export default combineReducers({
+  auth: authReducer,
   goals: goalsReducer,
 });

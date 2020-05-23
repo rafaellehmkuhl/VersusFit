@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
+import GoogleAuth from "./GoogleAuth";
 
 export default class Navbar extends Component {
   render() {
@@ -11,12 +12,7 @@ export default class Navbar extends Component {
             <Menu.Item name="home" />
           </Link>
           <Menu.Menu position="right">
-            <Link to="/login">
-              <Menu.Item name="login" />
-            </Link>
-            <Link to="/register">
-              <Menu.Item name="register" />
-            </Link>
+            <GoogleAuth />
           </Menu.Menu>
         </Menu>
       </div>

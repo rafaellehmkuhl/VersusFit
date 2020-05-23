@@ -1,3 +1,4 @@
+import { SIGN_IN, SIGN_OUT } from "./types";
 import goalsAPI from "../apis/goalsAPI";
 
 export const fetchChallengerGoals = (challengerName) => async (dispatch) => {
@@ -39,4 +40,17 @@ export const toggleChallengerGoal = (goal_id, challengerName) => async (
   const newGoalState = { status: !previousStatus };
   await goalsAPI.patch(`/${goal_id}`, newGoalState);
   dispatch(fetchChallengerGoals(challengerName));
+};
+
+export const signIn = (userId) => {
+  return {
+    type: SIGN_IN,
+    payload: userId,
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: SIGN_OUT,
+  };
 };
