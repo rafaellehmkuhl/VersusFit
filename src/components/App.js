@@ -1,31 +1,27 @@
 import React from "react";
-import CardCompetidor from "./CardCompetidor";
-import { Grid, Segment, Header, Divider, Icon } from "semantic-ui-react";
-
-const nomeCompetidor1 = "Rafael";
-const nomeCompetidor2 = "Emily";
+import { BrowserRouter, Route } from "react-router-dom";
+import Navbar from "./Navbar";
+import { Segment, Divider } from "semantic-ui-react";
+import ChallengeTable from "./ChallengeTable";
+import LoginScreen from "./LoginScreen";
+import RegisterScreen from "./RegisterScreen";
 
 class App extends React.Component {
   render() {
     return (
-      <Segment>
-        <Header as="h1" attached="top" block textAlign="center">
-          <Icon name="heart outline" />
-          Projeto Quarentena-Verao
-        </Header>
-
-        <Divider />
-
-        <Grid columns={2} centered divided>
-          <Grid.Column>
-            <CardCompetidor nomeCompetidor={nomeCompetidor1} />
-          </Grid.Column>
-
-          <Grid.Column>
-            <CardCompetidor nomeCompetidor={nomeCompetidor2} />
-          </Grid.Column>
-        </Grid>
-      </Segment>
+      <div>
+        <BrowserRouter>
+          <div>
+            <Segment>
+              <Navbar />
+              <Divider />
+              <Route path="/" exact component={ChallengeTable} />
+              <Route path="/login" exact component={LoginScreen} />
+              <Route path="/register" exact component={RegisterScreen} />
+            </Segment>
+          </div>
+        </BrowserRouter>
+      </div>
     );
   }
 }
