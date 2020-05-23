@@ -13,7 +13,7 @@ Estimular a construcao de uma rotina de exercicios e alimentacao visando uma vid
 Para o autor, este aplicativo serve como plataforma de aplicacao dos conhecimentos recem-adquiridos na area de aplicacoes web.
 
 ## Stack
-Este aplicativo atualmente eh construido utilizando React no front-end (puro, ainda sem Redux), se alimenta de uma API RestFul criada sobre Flask que armazena os dados em um banco PostgresSQL. Tanto front-end quanto api se encontram servidos em um ambiente Heroku.
+Este aplicativo atualmente eh construido utilizando React, com estados gerenciados por Redux, se alimenta de uma API RestFul criada sobre Flask que armazena os dados em um banco PostgresSQL. Tanto front-end quanto API se encontram servidos em ambientes Heroku.
 
 ## Estado atual
 Atualmente a aplicacao se encontra funcional, porem com nomes dos usuarios fixados e sem autenticacao. 
