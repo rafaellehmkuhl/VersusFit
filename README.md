@@ -18,3 +18,9 @@ Este aplicativo atualmente eh construido utilizando React, com estados gerenciad
 Atualmente a aplicacao se encontra funcional. 
 As mudancas realizadas pelo usuario sao comunicadas para um banco de dados atraves de uma API e persistem de uma sessao para outra.
 O nome dos usuarios ainda se encontra fixado.
+
+## Como buildar
+```
+yarn install
+yarn start
+```
