@@ -9,14 +9,14 @@ export default class ChallengeTable extends Component {
   render() {
     return (
       <div>
-        <Grid columns={2} centered divided>
-          <Grid.Column>
+        <Grid rows={2} centered divided>
+          <Grid.Row>
             <CardCompetidor nomeCompetidor={nomeCompetidor1} />
-          </Grid.Column>
+          </Grid.Row>
 
-          <Grid.Column>
+          <Grid.Row>
             <CardCompetidor nomeCompetidor={nomeCompetidor2} />
-          </Grid.Column>
+          </Grid.Row>
         </Grid>
       </div>
     );

@@ -1,7 +1,7 @@
 import React from "react";
-import ItemObjetivo from "./ItemObjetivo";
+// import ItemObjetivo from "./ItemObjetivo";
 import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
-import { Segment, Divider } from "semantic-ui-react";
+import { Segment, Divider, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import {
   fetchChallengerGoals,
@@ -18,13 +18,24 @@ class CardCompetidor extends React.Component {
   renderGoalsList() {
     return this.props.goals.map((item) => {
       return (
-        <ItemObjetivo
-          key={item.id}
-          item={item}
-          challengerName={this.props.nomeCompetidor}
-          onObjetivoChange={this.changeObjetivo}
-          onObjetivoDelete={this.deleteObjetivo}
-        />
+        <Table.Row textAlign="center">
+          <Table.Cell textAlign="left">Cal. (2/3)</Table.Cell>
+          <Table.Cell>oi</Table.Cell>
+          <Table.Cell>oi</Table.Cell>
+          <Table.Cell>oi</Table.Cell>
+          <Table.Cell>oi</Table.Cell>
+          <Table.Cell>oi</Table.Cell>
+          <Table.Cell>oi</Table.Cell>
+          <Table.Cell>oi</Table.Cell>
+        </Table.Row>
+
+        // <ItemObjetivo
+        //   key={item.id}
+        //   item={item}
+        //   challengerName={this.props.nomeCompetidor}
+        //   onObjetivoChange={this.changeObjetivo}
+        //   onObjetivoDelete={this.deleteObjetivo}
+        // />
       );
     });
   }
@@ -48,7 +59,22 @@ class CardCompetidor extends React.Component {
         <Segment attached="top" textAlign="center">
           {this.props.nomeCompetidor}
         </Segment>
-        {this.renderGoalsList()}
+        <Table celled unstackable compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Objetivo</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Dom</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Seg</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Ter</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Qua</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Qui</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Sex</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Sab</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{this.renderGoalsList()}</Table.Body>
+        </Table>
+
         <Divider />
         <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} />
       </div>
