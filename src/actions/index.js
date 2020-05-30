@@ -13,7 +13,7 @@ export const fetchChallengerGoals = (challengerName) => async (dispatch) => {
 export const addChallengerGoal = (goal, user_name) => async (dispatch) => {
   await goalsAPI.post(`/user_goals/${user_name}`, goal);
   dispatch(fetchChallengerGoals(user_name));
-  };
+};
 
 export const deleteChallengerGoal = (goal_id, challengerName) => async (
   dispatch
