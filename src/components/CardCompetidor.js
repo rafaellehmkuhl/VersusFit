@@ -3,7 +3,7 @@ import GoalItem from "./GoalItem";
 import NewGoalButton from "./NewGoalButton";
 import { Segment, Divider, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { fetchChallengerGoals, addChallengerGoal } from "../actions";
+import { fetchChallengerGoals } from "../actions";
 
 class CardCompetidor extends React.Component {
   componentDidMount() {
@@ -23,14 +23,6 @@ class CardCompetidor extends React.Component {
       );
     });
   }
-
-  postNewObjetivo = (goal_name) => {
-    var goal = {
-      name: goal_name,
-      repetitions: 3,
-    };
-    this.props.addChallengerGoal(goal, this.props.user_id);
-  };
 
   render() {
     return (
@@ -56,7 +48,7 @@ class CardCompetidor extends React.Component {
         </Table>
 
         <Divider />
-        <NewGoalButton onFormSubmit={this.postNewObjetivo} />
+        <NewGoalButton user_id={this.props.user_id} />
       </div>
     );
   }
@@ -75,5 +67,4 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   fetchChallengerGoals,
-  addChallengerGoal,
 })(CardCompetidor);
