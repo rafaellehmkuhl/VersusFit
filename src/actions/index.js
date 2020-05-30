@@ -3,12 +3,10 @@ import goalsAPI from "../apis/goalsAPI";
 
 export const fetchChallengerGoals = (challengerName) => async (dispatch) => {
   const response = await goalsAPI.get(`/${challengerName}`);
-  var challengerData = {};
-  challengerData[challengerName] = response.data;
   dispatch({
     type: "FETCH_GOALS",
     challengerName: challengerName,
-    payload: challengerData,
+    payload: response.data,
   });
 };
 
