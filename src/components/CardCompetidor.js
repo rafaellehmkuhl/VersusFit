@@ -63,7 +63,10 @@ class CardCompetidor extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   if (ownProps.nomeCompetidor in state.goals) {
-    return { goals: state.goals[ownProps.nomeCompetidor] };
+    const goals_sorted = state.goals[ownProps.nomeCompetidor].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    return { goals: goals_sorted };
   }
 
   return { goals: [] };
