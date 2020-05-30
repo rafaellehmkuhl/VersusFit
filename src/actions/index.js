@@ -18,7 +18,7 @@ export const addChallengerGoal = (goal, user_name) => async (dispatch) => {
 export const deleteChallengerGoal = (goal_id, challengerName) => async (
   dispatch
 ) => {
-  await goalsAPI.delete(`/${goal_id}`);
+  await goalsAPI.delete(`/goal/${goal_id}`);
   dispatch(fetchChallengerGoals(challengerName));
 };
 
