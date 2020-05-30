@@ -16,9 +16,7 @@ class CardCompetidor extends React.Component {
         <GoalItem
           key={goal.id}
           goal_id={goal.id}
-          challengerName={this.props.user_id}
-          onObjetivoChange={this.changeObjetivo}
-          onObjetivoDelete={this.deleteObjetivo}
+          user_id={this.props.user_id}
         />
       );
     });

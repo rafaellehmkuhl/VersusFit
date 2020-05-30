@@ -14,10 +14,37 @@ class DayCheckbox extends React.Component {
   };
 
   render() {
+    let status = false;
+    switch (this.props.weekday) {
+      case "dom":
+        status = this.props.goal.dom_status;
+        break;
+      case "seg":
+        status = this.props.goal.seg_status;
+        break;
+      case "ter":
+        status = this.props.goal.ter_status;
+        break;
+      case "qua":
+        status = this.props.goal.qua_status;
+        break;
+      case "qui":
+        status = this.props.goal.qui_status;
+        break;
+      case "sex":
+        status = this.props.goal.sex_status;
+        break;
+      case "sab":
+        status = this.props.goal.sab_status;
+        break;
+      default:
+        status = false;
+    }
+
     return (
       <Checkbox
         id={`${this.props.goal_id}_${this.props.weekday}`}
-        checked={this.props.status}
+        checked={status}
         onChange={this.onStatusChange}
       />
     );

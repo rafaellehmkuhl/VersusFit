@@ -7,10 +7,7 @@ import DayCheckbox from "./DayCheckbox";
 class GoalItem extends React.Component {
   onObjetivoDelete = (event) => {
     event.preventDefault();
-    this.props.deleteChallengerGoal(
-      this.props.goal.id,
-      this.props.goal.user_id
-    );
+    this.props.deleteChallengerGoal(this.props.goal_id, this.props.user_id);
   };
 
   render() {
@@ -27,58 +24,51 @@ class GoalItem extends React.Component {
         <Table.Cell textAlign="left">{`${this.props.goal.name} (${numCompletedGoals}/${this.props.goal.repetitions})`}</Table.Cell>
         <Table.Cell>
           <DayCheckbox
-            goal_id={this.props.goal.id}
-            user_id={this.props.goal.user_id}
+            goal_id={this.props.goal_id}
+            user_id={this.props.user_id}
             weekday="dom"
-            status={this.props.goal.dom_status}
           />
         </Table.Cell>
         <Table.Cell>
           <DayCheckbox
-            goal_id={this.props.goal.id}
-            user_id={this.props.goal.user_id}
+            goal_id={this.props.goal_id}
+            user_id={this.props.user_id}
             weekday="seg"
-            status={this.props.goal.seg_status}
           />
         </Table.Cell>
         <Table.Cell>
           <DayCheckbox
-            goal_id={this.props.goal.id}
-            user_id={this.props.goal.user_id}
+            goal_id={this.props.goal_id}
+            user_id={this.props.user_id}
             weekday="ter"
-            status={this.props.goal.ter_status}
           />
         </Table.Cell>
         <Table.Cell>
           <DayCheckbox
-            goal_id={this.props.goal.id}
-            user_id={this.props.goal.user_id}
+            goal_id={this.props.goal_id}
+            user_id={this.props.user_id}
             weekday="qua"
-            status={this.props.goal.qua_status}
           />
         </Table.Cell>
         <Table.Cell>
           <DayCheckbox
-            goal_id={this.props.goal.id}
-            user_id={this.props.goal.user_id}
+            goal_id={this.props.goal_id}
+            user_id={this.props.user_id}
             weekday="qui"
-            status={this.props.goal.qui_status}
           />
         </Table.Cell>
         <Table.Cell>
           <DayCheckbox
-            goal_id={this.props.goal.id}
-            user_id={this.props.goal.user_id}
+            goal_id={this.props.goal_id}
+            user_id={this.props.user_id}
             weekday="sex"
-            status={this.props.goal.sex_status}
           />
         </Table.Cell>
         <Table.Cell>
           <DayCheckbox
-            goal_id={this.props.goal.id}
-            user_id={this.props.goal.user_id}
+            goal_id={this.props.goal_id}
+            user_id={this.props.user_id}
             weekday="sab"
-            status={this.props.goal.sab_status}
           />
         </Table.Cell>
         <Table.Cell>
@@ -97,7 +87,7 @@ class GoalItem extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    goal: state.goals[ownProps.challengerName].filter(
+    goal: state.goals[ownProps.user_id].filter(
       (element) => element.id === ownProps.goal_id
     )[0],
   };
