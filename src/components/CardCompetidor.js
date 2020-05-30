@@ -1,14 +1,9 @@
 import React from "react";
-// import ItemObjetivo from "./ItemObjetivo";
+import ItemObjetivo from "./ItemObjetivo";
 import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
 import { Segment, Divider, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
-import {
-  fetchChallengerGoals,
-  deleteChallengerGoal,
-  toggleChallengerGoal,
-  addChallengerGoal,
-} from "../actions";
+import { fetchChallengerGoals, addChallengerGoal } from "../actions";
 
 class CardCompetidor extends React.Component {
   componentDidMount() {
@@ -16,26 +11,15 @@ class CardCompetidor extends React.Component {
   }
 
   renderGoalsList() {
-    return this.props.goals.map((item) => {
+    return this.props.goals.map((goal) => {
       return (
-        <Table.Row textAlign="center">
-          <Table.Cell textAlign="left">Cal. (2/3)</Table.Cell>
-          <Table.Cell>oi</Table.Cell>
-          <Table.Cell>oi</Table.Cell>
-          <Table.Cell>oi</Table.Cell>
-          <Table.Cell>oi</Table.Cell>
-          <Table.Cell>oi</Table.Cell>
-          <Table.Cell>oi</Table.Cell>
-          <Table.Cell>oi</Table.Cell>
-        </Table.Row>
-
-        // <ItemObjetivo
-        //   key={item.id}
-        //   item={item}
-        //   challengerName={this.props.nomeCompetidor}
-        //   onObjetivoChange={this.changeObjetivo}
-        //   onObjetivoDelete={this.deleteObjetivo}
-        // />
+        <ItemObjetivo
+          key={goal.id}
+          goal_id={goal.id}
+          challengerName={this.props.nomeCompetidor}
+          onObjetivoChange={this.changeObjetivo}
+          onObjetivoDelete={this.deleteObjetivo}
+        />
       );
     });
   }
@@ -45,12 +29,6 @@ class CardCompetidor extends React.Component {
     this.props.addChallengerGoal(goal_tarefa, this.props.nomeCompetidor);
   };
 
-  changeObjetivo = (item_id) => {
-    this.props.toggleChallengerGoal(item_id, this.props.nomeCompetidor);
-  };
-
-  deleteObjetivo = (item_id) => {
-    this.props.deleteChallengerGoal(item_id, this.props.nomeCompetidor);
   };
 
   render() {
@@ -63,13 +41,14 @@ class CardCompetidor extends React.Component {
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Objetivo</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Dom</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Seg</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Ter</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Qua</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Qui</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Sex</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Sab</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">D</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">T</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center"></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>{this.renderGoalsList()}</Table.Body>
@@ -92,7 +71,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   fetchChallengerGoals,
-  deleteChallengerGoal,
-  toggleChallengerGoal,
   addChallengerGoal,
 })(CardCompetidor);
