@@ -1,11 +1,11 @@
 import { SIGN_IN, SIGN_OUT } from "./types";
 import goalsAPI from "../apis/goalsAPI";
 
-export const fetchChallengerGoals = (challengerName) => async (dispatch) => {
-  const response = await goalsAPI.get(`/user_goals/${challengerName}`);
+export const fetchChallengerGoals = (user_id) => async (dispatch) => {
+  const response = await goalsAPI.get(`/user_goals/${user_id}`);
   dispatch({
     type: "FETCH_GOALS",
-    challengerName: challengerName,
+    user_id: user_id,
     payload: response.data,
   });
 };
@@ -15,21 +15,18 @@ export const addChallengerGoal = (goal, user_name) => async (dispatch) => {
   dispatch(fetchChallengerGoals(user_name));
 };
 
-export const deleteChallengerGoal = (goal_id, challengerName) => async (
-  dispatch
-) => {
+export const deleteChallengerGoal = (goal_id, user_id) => async (dispatch) => {
   await goalsAPI.delete(`/goal/${goal_id}`);
-  dispatch(fetchChallengerGoals(challengerName));
+  dispatch(fetchChallengerGoals(user_id));
 };
 
-export const toggleChallengerGoal = (
-  challengerName,
-  goal_id,
-  weekday_name
-) => async (dispatch, getState) => {
+export const toggleChallengerGoal = (user_id, goal_id, weekday_name) => async (
+  dispatch,
+  getState
+) => {
   const toggled_goal = { weekday: weekday_name };
   await goalsAPI.patch(`/goal/${goal_id}`, toggled_goal);
-  dispatch(fetchChallengerGoals(challengerName));
+  dispatch(fetchChallengerGoals(user_id));
 };
 
 export const signIn = (userId) => {

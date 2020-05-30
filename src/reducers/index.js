@@ -4,10 +4,10 @@ import authReducer from "./authReducer";
 const goalsReducer = (state = {}, action) => {
   switch (action.type) {
     case "FETCH_GOALS":
-      const challengerName = action.challengerName;
+      const user_id = action.user_id;
       const newState = Object.assign({}, state);
-      delete newState[challengerName];
-      return Object.assign(newState, { [challengerName]: action.payload });
+      delete newState[user_id];
+      return Object.assign(newState, { [user_id]: action.payload });
 
     case "DELETE_GOAL":
       console.log("deletando");

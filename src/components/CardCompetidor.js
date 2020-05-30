@@ -7,7 +7,7 @@ import { fetchChallengerGoals, addChallengerGoal } from "../actions";
 
 class CardCompetidor extends React.Component {
   componentDidMount() {
-    this.props.fetchChallengerGoals(this.props.nomeCompetidor);
+    this.props.fetchChallengerGoals(this.props.user_id);
   }
 
   renderGoalsList() {
@@ -16,7 +16,7 @@ class CardCompetidor extends React.Component {
         <GoalItem
           key={goal.id}
           goal_id={goal.id}
-          challengerName={this.props.nomeCompetidor}
+          challengerName={this.props.user_id}
           onObjetivoChange={this.changeObjetivo}
           onObjetivoDelete={this.deleteObjetivo}
         />
@@ -24,18 +24,19 @@ class CardCompetidor extends React.Component {
     });
   }
 
-  postNewObjetivo = (goal_tarefa) => {
-    console.log(goal_tarefa);
-    this.props.addChallengerGoal(goal_tarefa, this.props.nomeCompetidor);
-  };
-
+  postNewObjetivo = (goal_name) => {
+    var goal = {
+      name: goal_name,
+      repetitions: 3,
+    };
+    this.props.addChallengerGoal(goal, this.props.user_id);
   };
 
   render() {
     return (
       <div>
         <Segment attached="top" textAlign="center">
-          {this.props.nomeCompetidor}
+          {this.props.user_id}
         </Segment>
         <Table celled unstackable compact>
           <Table.Header>
@@ -62,8 +63,8 @@ class CardCompetidor extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  if (ownProps.nomeCompetidor in state.goals) {
-    const goals_sorted = state.goals[ownProps.nomeCompetidor].sort((a, b) =>
+  if (ownProps.user_id in state.goals) {
+    const goals_sorted = state.goals[ownProps.user_id].sort((a, b) =>
       a.name.localeCompare(b.name)
     );
     return { goals: goals_sorted };
