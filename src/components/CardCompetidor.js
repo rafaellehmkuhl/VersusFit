@@ -1,6 +1,6 @@
 import React from "react";
 import GoalItem from "./GoalItem";
-import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
+import NewGoalButton from "./NewGoalButton";
 import { Segment, Divider, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchChallengerGoals, addChallengerGoal } from "../actions";
@@ -56,7 +56,7 @@ class CardCompetidor extends React.Component {
         </Table>
 
         <Divider />
-        <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} />
+        <NewGoalButton onFormSubmit={this.postNewObjetivo} />
       </div>
     );
   }

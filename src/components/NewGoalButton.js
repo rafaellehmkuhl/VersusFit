@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, Button } from "semantic-ui-react";
 
-class ButtonAdicionarObjetivo extends React.Component {
+class NewGoalButton extends React.Component {
   state = { term: "" };
 
   onFormSubmit = (event) => {
@@ -35,4 +35,4 @@ class ButtonAdicionarObjetivo extends React.Component {
   }
 }
 
-export default ButtonAdicionarObjetivo;
+export default NewGoalButton;
