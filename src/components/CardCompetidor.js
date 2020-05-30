@@ -4,11 +4,21 @@ import NewGoalButton from "./NewGoalButton";
 import { Segment, Divider, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchChallengerGoals } from "../actions";
+import goalsAPI from "../apis/goalsAPI";
 
 class CardCompetidor extends React.Component {
+  state = { user_name: "" };
   componentDidMount() {
     this.props.fetchChallengerGoals(this.props.user_id);
+    this.getUserNames();
   }
+
+  getUserNames = async () => {
+    const response = await goalsAPI.get(`/user/${this.props.user_id}`);
+    this.setState({
+      user_name: response.data.name,
+    });
+  };
 
   renderGoalsList() {
     return this.props.goals.map((goal) => {
@@ -26,7 +36,7 @@ class CardCompetidor extends React.Component {
     return (
       <div>
         <Segment attached="top" textAlign="center">
-          {this.props.user_id}
+          {this.state.user_name}
         </Segment>
         <Table celled unstackable compact>
           <Table.Header>
