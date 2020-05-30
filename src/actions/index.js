@@ -22,15 +22,13 @@ export const deleteChallengerGoal = (goal_id, challengerName) => async (
   dispatch(fetchChallengerGoals(challengerName));
 };
 
-export const toggleChallengerGoal = (goal_id, challengerName) => async (
-  dispatch,
-  getState
-) => {
-  const previousStatus = getState().goals[challengerName].filter(
-    (element) => element.id === goal_id
-  )[0].status;
-  const newGoalState = { status: !previousStatus };
-  await goalsAPI.patch(`/${goal_id}`, newGoalState);
+export const toggleChallengerGoal = (
+  challengerName,
+  goal_id,
+  weekday_name
+) => async (dispatch, getState) => {
+  const toggled_goal = { weekday: weekday_name };
+  await goalsAPI.patch(`/goal/${goal_id}`, toggled_goal);
   dispatch(fetchChallengerGoals(challengerName));
 };
 
