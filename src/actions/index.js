@@ -2,7 +2,7 @@ import { SIGN_IN, SIGN_OUT } from "./types";
 import goalsAPI from "../apis/goalsAPI";
 
 export const fetchChallengerGoals = (challengerName) => async (dispatch) => {
-  const response = await goalsAPI.get(`/${challengerName}`);
+  const response = await goalsAPI.get(`/user_goals/${challengerName}`);
   dispatch({
     type: "FETCH_GOALS",
     challengerName: challengerName,
