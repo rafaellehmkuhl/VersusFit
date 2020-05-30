@@ -1,5 +1,5 @@
 import React from "react";
-import ItemObjetivo from "./ItemObjetivo";
+import GoalItem from "./GoalItem";
 import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
 import { Segment, Divider, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ class CardCompetidor extends React.Component {
   renderGoalsList() {
     return this.props.goals.map((goal) => {
       return (
-        <ItemObjetivo
+        <GoalItem
           key={goal.id}
           goal_id={goal.id}
           challengerName={this.props.nomeCompetidor}
