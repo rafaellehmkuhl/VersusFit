@@ -2,21 +2,21 @@ import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import CardCompetidor from "./CardCompetidor";
 
-const nomeCompetidor1 = "Rafael";
-const nomeCompetidor2 = "Emily";
+const user1_id = 1;
+const user2_id = 2;
 
 export default class ChallengeTable extends Component {
   render() {
     return (
       <div>
-        <Grid columns={2} centered divided>
-          <Grid.Column>
-            <CardCompetidor nomeCompetidor={nomeCompetidor1} />
-          </Grid.Column>
+        <Grid rows={2} centered divided>
+          <Grid.Row>
+            <CardCompetidor user_id={user1_id} />
+          </Grid.Row>
 
-          <Grid.Column>
-            <CardCompetidor nomeCompetidor={nomeCompetidor2} />
-          </Grid.Column>
+          <Grid.Row>
+            <CardCompetidor user_id={user2_id} />
+          </Grid.Row>
         </Grid>
       </div>
     );

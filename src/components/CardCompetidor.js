@@ -1,64 +1,73 @@
 import React from "react";
-import ItemObjetivo from "./ItemObjetivo";
-import ButtonAdicionarObjetivo from "./ButtonAdicionarObjetivo";
-import { Segment, Divider } from "semantic-ui-react";
+import GoalItem from "./GoalItem";
+import NewGoalButton from "./NewGoalButton";
+import { Segment, Divider, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
-import {
-  fetchChallengerGoals,
-  deleteChallengerGoal,
-  toggleChallengerGoal,
-  addChallengerGoal,
-} from "../actions";
+import { fetchChallengerGoals } from "../actions";
+import goalsAPI from "../apis/goalsAPI";
 
 class CardCompetidor extends React.Component {
+  state = { user_name: "" };
   componentDidMount() {
-    this.props.fetchChallengerGoals(this.props.nomeCompetidor);
+    this.props.fetchChallengerGoals(this.props.user_id);
+    this.getUserNames();
   }
 
+  getUserNames = async () => {
+    const response = await goalsAPI.get(`/user/${this.props.user_id}`);
+    this.setState({
+      user_name: response.data.name,
+    });
+  };
+
   renderGoalsList() {
-    return this.props.goals.map((item) => {
+    return this.props.goals.map((goal) => {
       return (
-        <ItemObjetivo
-          key={item.id}
-          item={item}
-          challengerName={this.props.nomeCompetidor}
-          onObjetivoChange={this.changeObjetivo}
-          onObjetivoDelete={this.deleteObjetivo}
+        <GoalItem
+          key={goal.id}
+          goal_id={goal.id}
+          user_id={this.props.user_id}
         />
       );
     });
   }
 
-  postNewObjetivo = (goal_tarefa) => {
-    console.log(goal_tarefa);
-    this.props.addChallengerGoal(goal_tarefa, this.props.nomeCompetidor);
-  };
-
-  changeObjetivo = (item_id) => {
-    this.props.toggleChallengerGoal(item_id, this.props.nomeCompetidor);
-  };
-
-  deleteObjetivo = (item_id) => {
-    this.props.deleteChallengerGoal(item_id, this.props.nomeCompetidor);
-  };
-
   render() {
     return (
       <div>
         <Segment attached="top" textAlign="center">
-          {this.props.nomeCompetidor}
+          {this.state.user_name}
         </Segment>
-        {this.renderGoalsList()}
+        <Table celled unstackable compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Objetivo</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">D</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">T</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center"></Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{this.renderGoalsList()}</Table.Body>
+        </Table>
+
         <Divider />
-        <ButtonAdicionarObjetivo onFormSubmit={this.postNewObjetivo} />
+        <NewGoalButton user_id={this.props.user_id} />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  if (ownProps.nomeCompetidor in state.goals) {
-    return { goals: state.goals[ownProps.nomeCompetidor] };
+  if (ownProps.user_id in state.goals) {
+    const goals_sorted = state.goals[ownProps.user_id].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    return { goals: goals_sorted };
   }
 
   return { goals: [] };
@@ -66,7 +75,4 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   fetchChallengerGoals,
-  deleteChallengerGoal,
-  toggleChallengerGoal,
-  addChallengerGoal,
 })(CardCompetidor);

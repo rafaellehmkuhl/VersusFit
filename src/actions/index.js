@@ -1,45 +1,32 @@
 import { SIGN_IN, SIGN_OUT } from "./types";
 import goalsAPI from "../apis/goalsAPI";
 
-export const fetchChallengerGoals = (challengerName) => async (dispatch) => {
-  const response = await goalsAPI.get(`/${challengerName}`);
-  var challengerData = {};
-  challengerData[challengerName] = response.data;
+export const fetchChallengerGoals = (user_id) => async (dispatch) => {
+  const response = await goalsAPI.get(`/user_goals/${user_id}`);
   dispatch({
     type: "FETCH_GOALS",
-    challengerName: challengerName,
-    payload: challengerData,
+    user_id: user_id,
+    payload: response.data,
   });
 };
 
-export const addChallengerGoal = (goal_tarefa, challengerName) => async (
-  dispatch
-) => {
-  var goal = {
-    tarefa: goal_tarefa,
-    competidor: challengerName,
-  };
-  await goalsAPI.post(`/`, goal);
-  dispatch(fetchChallengerGoals(challengerName));
+export const addChallengerGoal = (goal, user_name) => async (dispatch) => {
+  await goalsAPI.post(`/user_goals/${user_name}`, goal);
+  dispatch(fetchChallengerGoals(user_name));
 };
 
-export const deleteChallengerGoal = (goal_id, challengerName) => async (
-  dispatch
-) => {
-  await goalsAPI.delete(`/${goal_id}`);
-  dispatch(fetchChallengerGoals(challengerName));
+export const deleteChallengerGoal = (goal_id, user_id) => async (dispatch) => {
+  await goalsAPI.delete(`/goal/${goal_id}`);
+  dispatch(fetchChallengerGoals(user_id));
 };
 
-export const toggleChallengerGoal = (goal_id, challengerName) => async (
+export const toggleChallengerGoal = (user_id, goal_id, weekday_name) => async (
   dispatch,
   getState
 ) => {
-  const previousStatus = getState().goals[challengerName].filter(
-    (element) => element.id === goal_id
-  )[0].status;
-  const newGoalState = { status: !previousStatus };
-  await goalsAPI.patch(`/${goal_id}`, newGoalState);
-  dispatch(fetchChallengerGoals(challengerName));
+  const toggled_goal = { weekday: weekday_name };
+  await goalsAPI.patch(`/goal/${goal_id}`, toggled_goal);
+  dispatch(fetchChallengerGoals(user_id));
 };
 
 export const signIn = (userId) => {
