@@ -2,7 +2,7 @@
 O VersusFit consiste de um aplicativo para estimulo no desenvolvimento de rotinas saudaveis.
 Para isso o aplicativo coloca duas pessoas como desafiantes no cumprimento de rotinas que eles, em consenso, estipularam. No caso de nao cumprimento, o desafiante perde a aposta financeira.
 
-![App screenshot](https://i.imgur.com/P15BJqR.png)
+![App screenshot](https://i.imgur.com/kiGaTnL.png)
 
 ## Objetivos
 
