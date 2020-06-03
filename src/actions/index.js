@@ -1,10 +1,10 @@
-import { SIGN_IN, SIGN_OUT } from "./types";
+import { SIGN_IN, SIGN_OUT, FETCH_USER_GOALS } from "./types";
 import goalsAPI from "../apis/goalsAPI";
 
 export const fetchChallengerGoals = (user_id) => async (dispatch) => {
   const response = await goalsAPI.get(`/user_goals/${user_id}`);
   dispatch({
-    type: "FETCH_GOALS",
+    type: FETCH_USER_GOALS,
     user_id: user_id,
     payload: response.data,
   });
