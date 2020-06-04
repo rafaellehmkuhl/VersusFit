@@ -6,11 +6,7 @@ import { toggleChallengerGoal } from "../actions";
 class DayCheckbox extends React.Component {
   onStatusChange = (event) => {
     event.preventDefault();
-    this.props.toggleChallengerGoal(
-      this.props.goal.user_id,
-      this.props.goal.id,
-      this.props.weekday
-    );
+    this.props.toggleChallengerGoal(this.props.goal.id, this.props.weekday);
   };
 
   render() {
@@ -53,8 +49,8 @@ class DayCheckbox extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    goal: state.goals[ownProps.user_id].filter(
-      (element) => element.id === ownProps.goal_id
+    goal: Object.values(state.goals).filter(
+      (goal) => goal.id === ownProps.goal_id
     )[0],
   };
 };

@@ -63,14 +63,14 @@ class CardCompetidor extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  if (ownProps.user_id in state.goals) {
-    const goals_sorted = state.goals[ownProps.user_id].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
-    return { goals: goals_sorted };
-  }
+  const user_goals = Object.values(state.goals).filter(
+    (goal) => goal.user_id === ownProps.user_id
+  );
 
-  return { goals: [] };
+  const user_goals_sorted = user_goals.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+  return { goals: user_goals_sorted };
 };
 
 export default connect(mapStateToProps, {

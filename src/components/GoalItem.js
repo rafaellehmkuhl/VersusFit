@@ -7,7 +7,7 @@ import DayCheckbox from "./DayCheckbox";
 class GoalItem extends React.Component {
   onObjetivoDelete = (event) => {
     event.preventDefault();
-    this.props.deleteChallengerGoal(this.props.goal_id, this.props.user_id);
+    this.props.deleteChallengerGoal(this.props.goal_id);
   };
 
   render() {
@@ -87,8 +87,8 @@ class GoalItem extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    goal: state.goals[ownProps.user_id].filter(
-      (element) => element.id === ownProps.goal_id
+    goal: Object.values(state.goals).filter(
+      (goal) => goal.id === ownProps.goal_id
     )[0],
   };
 };
