@@ -11,6 +11,9 @@ export default class Navbar extends Component {
           <Link to="/">
             <Menu.Item name="Home" />
           </Link>
+          <Link to="/que-time">
+            <Menu.Item name="QueTimeFalaMandarim" />
+          </Link>
           <Link to="/rafa-emily">
             <Menu.Item name="RafaEmily" />
           </Link>
