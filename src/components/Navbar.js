@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
-import GoogleAuth from "./GoogleAuth";
 
 export default class Navbar extends Component {
   render() {
@@ -20,9 +19,7 @@ export default class Navbar extends Component {
           <Link to="/danilo-bia">
             <Menu.Item name="Danilo-Bia" />
           </Link>
-          <Menu.Menu position="right">
-            <GoogleAuth />
-          </Menu.Menu>
+          <Menu.Menu position="right"></Menu.Menu>
         </Menu>
       </div>
     );
