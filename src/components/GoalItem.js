@@ -19,8 +19,17 @@ class GoalItem extends React.Component {
       this.props.goal.qui_status +
       this.props.goal.sex_status +
       this.props.goal.sab_status;
+
+    const goalPercentage =
+      (100 * numCompletedGoals) / this.props.goal.repetitions;
+
     return (
-      <Table.Row textAlign="center">
+      // <Table.Row textAlign="center" positive={true}>
+      <Table.Row
+        textAlign="center"
+        negative={goalPercentage !== 100}
+        positive={goalPercentage === 100}
+      >
         <Table.Cell textAlign="left">{`${this.props.goal.name} (${numCompletedGoals}/${this.props.goal.repetitions})`}</Table.Cell>
         <Table.Cell>
           <DayCheckbox
