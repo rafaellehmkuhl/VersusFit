@@ -9,6 +9,7 @@ const user10_id = 10;
 const user11_id = 11;
 const user12_id = 12;
 const user13_id = 13;
+const user14_id = 14;
 
 export default class ChallengeTable extends Component {
   render() {
@@ -35,6 +36,9 @@ export default class ChallengeTable extends Component {
           </Grid.Row>
           <Grid.Row>
             <CardCompetidor user_id={user13_id} />
+          </Grid.Row>
+          <Grid.Row>
+            <CardCompetidor user_id={user14_id} />
           </Grid.Row>
         </Grid>
       </div>
