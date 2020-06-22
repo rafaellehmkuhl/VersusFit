@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import { Segment, Divider } from "semantic-ui-react";
+import ChallengeTime from "./ChallengeTime";
 import ChallengeTable from "./ChallengeTable";
 import ChallengeTable2 from "./ChallengeTable2";
 import LoginScreen from "./LoginScreen";
@@ -16,6 +17,7 @@ class App extends React.Component {
             <Segment>
               <Navbar />
               <Divider />
+              <Route path="/que-time" exact component={ChallengeTime} />
               <Route path="/rafa-emily" exact component={ChallengeTable} />
               <Route path="/danilo-bia" exact component={ChallengeTable2} />
               <Route path="/login" exact component={LoginScreen} />
