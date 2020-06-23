@@ -24,7 +24,6 @@ class GoalItem extends React.Component {
       (100 * numCompletedGoals) / this.props.goal.repetitions;
 
     return (
-      // <Table.Row textAlign="center" positive={true}>
       <Table.Row
         textAlign="center"
         negative={goalPercentage !== 100}
