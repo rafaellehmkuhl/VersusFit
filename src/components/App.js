@@ -7,6 +7,7 @@ import ChallengeTable from "./ChallengeTable";
 import ChallengeTable2 from "./ChallengeTable2";
 import LoginScreen from "./LoginScreen";
 import RegisterScreen from "./RegisterScreen";
+import Home from "./Home";
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
             <Segment>
               <Navbar />
               <Divider />
+              <Route path="/" exact component={Home} />
               <Route path="/que-time" exact component={ChallengeTime} />
               <Route path="/rafa-emily" exact component={ChallengeTable} />
               <Route path="/danilo-bia" exact component={ChallengeTable2} />
