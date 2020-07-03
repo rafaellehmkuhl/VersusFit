@@ -5,11 +5,11 @@ import { signIn, signOut } from "../actions";
 
 export class GoogleAuth extends Component {
   componentDidMount() {
+    const API_KEY = process.env.REACT_APP_GOOGLE_OAUTH_API_KEY;
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
-          clientId:
-            "679329796113-3se7g6n7gl2766tc120cqmoghcu8nep1.apps.googleusercontent.com",
+          clientId: `${API_KEY}.apps.googleusercontent.com`,
           scope: "email",
         })
         .then(() => {
