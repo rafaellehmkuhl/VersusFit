@@ -42,11 +42,16 @@ export const toggleChallengerGoal = (goal_id, weekday) => async (dispatch) => {
   });
 };
 
-export const signIn = (userId) => {
-  return {
-    type: SIGN_IN,
-    payload: userId,
+export const signIn = (user_g_id, user_name) => async (dispatch) => {
+  const user = {
+    g_id: user_g_id,
+    name: user_name,
   };
+  const response = await goalsAPI.post(`/users`, user);
+  dispatch({
+    type: SIGN_IN,
+    payload: response.data,
+  });
 };
 
 export const signOut = () => {
