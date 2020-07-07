@@ -23,6 +23,7 @@ class NewGoalButton extends React.Component {
     var goal = {
       name: this.state.goal_name,
       repetitions: this.state.goal_repetitions,
+      challenge_id: this.props.challenge_id,
     };
     this.props.addChallengerGoal(goal, this.props.user_id);
     this.setState({ goal_name: "" });

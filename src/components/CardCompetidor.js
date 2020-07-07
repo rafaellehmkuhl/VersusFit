@@ -14,7 +14,7 @@ class CardCompetidor extends React.Component {
   }
 
   getUserNames = async () => {
-    const response = await goalsAPI.get(`/user/${this.props.user_id}`);
+    const response = await goalsAPI.get(`/user/${this.props.user_id}`); //TODO: Move to actions
     this.setState({
       user_name: response.data.name,
     });
@@ -22,19 +22,16 @@ class CardCompetidor extends React.Component {
 
   renderGoalsList() {
     return this.props.goals.map((goal) => {
-      return (
-        <GoalItem
-          key={goal.id}
-          goal_id={goal.id}
-          user_id={this.props.user_id}
-        />
-      );
+      return <GoalItem key={goal.id} goal={goal} />;
     });
   }
 
   render() {
     return (
       <div>
+        <Segment attached="top" textAlign="center">
+          {this.props.challenge_name}
+        </Segment>
         <Segment attached="top" textAlign="center">
           {this.state.user_name}
         </Segment>
@@ -56,20 +53,26 @@ class CardCompetidor extends React.Component {
         </Table>
 
         <Divider />
-        <NewGoalButton user_id={this.props.user_id} />
+        <NewGoalButton
+          user_id={this.props.user_id}
+          challenge_id={this.props.challenge_id}
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const user_goals = Object.values(state.goals).filter(
-    (goal) => goal.user_id === ownProps.user_id
+  const challenge_user_goals = Object.values(state.goals).filter(
+    (goal) =>
+      goal.user_id === ownProps.user_id &&
+      goal.challenge_id === ownProps.challenge_id
   );
 
-  const user_goals_sorted = user_goals.sort((a, b) =>
+  const user_goals_sorted = challenge_user_goals.sort((a, b) =>
     a.name.localeCompare(b.name)
   );
+
   return { goals: user_goals_sorted };
 };
 

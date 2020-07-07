@@ -39,7 +39,7 @@ class DayCheckbox extends React.Component {
 
     return (
       <Checkbox
-        id={`${this.props.goal_id}_${this.props.weekday}`}
+        id={`${this.props.goal.id}_${this.props.weekday}`}
         checked={status}
         onChange={this.onStatusChange}
       />
@@ -47,14 +47,6 @@ class DayCheckbox extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    goal: Object.values(state.goals).filter(
-      (goal) => goal.id === ownProps.goal_id
-    )[0],
-  };
-};
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   toggleChallengerGoal,
 })(DayCheckbox);
