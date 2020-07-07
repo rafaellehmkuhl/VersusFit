@@ -8,6 +8,7 @@ import {
   ADD_USER_GOAL,
   UPDATE_USER_GOAL,
   DELETE_USER_GOAL,
+  FETCH_USERS,
 } from "./types";
 import goalsAPI from "../apis/goalsAPI";
 
@@ -23,6 +24,14 @@ export const fetchUserChallenges = (user_id) => async (dispatch) => {
   const response = await goalsAPI.get(`/user_challenges/${user_id}`);
   dispatch({
     type: FETCH_USER_CHALLENGES,
+    payload: response.data,
+  });
+};
+
+export const fetchUsers = () => async (dispatch) => {
+  const response = await goalsAPI.get(`/users`);
+  dispatch({
+    type: FETCH_USERS,
     payload: response.data,
   });
 };
