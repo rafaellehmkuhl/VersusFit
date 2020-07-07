@@ -1,14 +1,20 @@
 import React from "react";
 import { Input, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { addChallenge, addChallengeUser } from "../actions";
+import { addChallenge, addChallengeUser, fetchUsers } from "../actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Select from "react-select";
 
 class NewChallengeButton extends React.Component {
   state = {
     challenge_name: "",
+    selectedUsers: null,
   };
+
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
 
   notify = (message) =>
     toast.success(message, {
@@ -27,7 +33,9 @@ class NewChallengeButton extends React.Component {
       name: this.state.challenge_name,
     };
     this.props.addChallenge(challenge).then((challengeId) => {
-      this.props.addChallengeUser(challengeId, this.props.userId);
+      this.state.selectedUsers.forEach((user) => {
+        this.props.addChallengeUser(challengeId, user.value);
+      });
       this.notify(`${challenge.name} challenge created!`);
     });
     this.setState({ challenge_name: "" });
@@ -39,9 +47,20 @@ class NewChallengeButton extends React.Component {
     });
   };
 
+  handleSelectedUsersChange = (selectedUsers) => {
+    this.setState({ selectedUsers });
+  };
+
   render() {
     return (
       <form onSubmit={this.onFormSubmit}>
+        <Select
+          name="users-field"
+          value={this.state.value}
+          onChange={this.handleSelectedUsersChange}
+          options={this.props.users}
+          isMulti
+        />
         <Input
           type="text"
           value={this.state.challenge_name}
@@ -69,7 +88,19 @@ class NewChallengeButton extends React.Component {
   }
 }
 
-export default connect(null, {
+const mapStateToProps = (state, ownProps) => {
+  const users = Object.values(state.users).map((user) => ({
+    value: user.id,
+    label: user.name,
+  }));
+  const users_sorted = users.sort((a, b) => a.label.localeCompare(b.label));
+  return {
+    users: users_sorted,
+  };
+};
+
+export default connect(mapStateToProps, {
   addChallenge,
   addChallengeUser,
+  fetchUsers,
 })(NewChallengeButton);
