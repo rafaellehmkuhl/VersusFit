@@ -4,6 +4,7 @@ import {
   FETCH_USER_GOALS,
   FETCH_USER_CHALLENGES,
   ADD_CHALLENGE,
+  ADD_CHALLENGE_USER,
   ADD_USER_GOAL,
   UPDATE_USER_GOAL,
   DELETE_USER_GOAL,
@@ -42,6 +43,16 @@ export const addChallenge = (challenge) => async (dispatch) => {
   });
   return response.data.id;
 };
+
+export const addChallengeUser = (challengeId, userId) => async (dispatch) => {
+  const user = { userId };
+  const response = await goalsAPI.post(`/challenge/${challengeId}`, user);
+  dispatch({
+    type: ADD_CHALLENGE_USER,
+    payload: response.data,
+  });
+};
+
 export const deleteChallengerGoal = (goal_id) => async (dispatch) => {
   await goalsAPI.delete(`/goal/${goal_id}`);
   dispatch({
