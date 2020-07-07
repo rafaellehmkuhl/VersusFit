@@ -2,6 +2,7 @@ import {
   SIGN_IN,
   SIGN_OUT,
   FETCH_USER_GOALS,
+  FETCH_USER_CHALLENGES,
   ADD_USER_GOAL,
   UPDATE_USER_GOAL,
   DELETE_USER_GOAL,
@@ -12,6 +13,14 @@ export const fetchChallengerGoals = (user_id) => async (dispatch) => {
   const response = await goalsAPI.get(`/user_goals/${user_id}`);
   dispatch({
     type: FETCH_USER_GOALS,
+    payload: response.data,
+  });
+};
+
+export const fetchUserChallenges = (user_id) => async (dispatch) => {
+  const response = await goalsAPI.get(`/user_challenges/${user_id}`);
+  dispatch({
+    type: FETCH_USER_CHALLENGES,
     payload: response.data,
   });
 };
