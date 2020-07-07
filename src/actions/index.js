@@ -3,6 +3,7 @@ import {
   SIGN_OUT,
   FETCH_USER_GOALS,
   FETCH_USER_CHALLENGES,
+  ADD_CHALLENGE,
   ADD_USER_GOAL,
   UPDATE_USER_GOAL,
   DELETE_USER_GOAL,
@@ -33,6 +34,14 @@ export const addChallengerGoal = (goal, user_id) => async (dispatch) => {
   });
 };
 
+export const addChallenge = (challenge) => async (dispatch) => {
+  const response = await goalsAPI.post(`/challenges`, challenge);
+  dispatch({
+    type: ADD_CHALLENGE,
+    payload: response.data,
+  });
+  return response.data.id;
+};
 export const deleteChallengerGoal = (goal_id) => async (dispatch) => {
   await goalsAPI.delete(`/goal/${goal_id}`);
   dispatch({

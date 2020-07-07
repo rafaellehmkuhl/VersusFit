@@ -1,12 +1,15 @@
-import { FETCH_USER_CHALLENGES } from "../actions/types";
+import {
+  FETCH_USER_CHALLENGES,
+  ADD_CHALLENGE,
+} from "../actions/types";
 import _ from "lodash";
 
 const challengesReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_USER_CHALLENGES:
       return { ...state, ..._.mapKeys(action.payload, "id") };
-    // case ADD_USER_GOAL:
-    //   return { ...state, [action.payload.id]: action.payload };
+    case ADD_CHALLENGE:
+      return { ...state, [action.payload.id]: action.payload };
     // case UPDATE_USER_GOAL:
     //   return { ...state, [action.payload.id]: action.payload };
     // case DELETE_USER_GOAL:
