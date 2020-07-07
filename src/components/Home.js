@@ -1,24 +1,23 @@
 import React, { Component } from "react";
-import ChallengeStack from "./ChallengesStack";
 import { connect } from "react-redux";
+import ChallengeStack from "./ChallengesStack";
 
 class Home extends Component {
-  renderChallengeStack() {
-    if (this.props.isSignedIn) {
-      return <ChallengeStack user_id={this.props.userId} />;
+  renderChallenge() {
+    if (this.props.activeChallenge) {
+      return <ChallengeStack challenge={this.props.activeChallenge} />;
     } else {
-      return <div>Not signed in</div>;
+      return;
     }
   }
   render() {
-    return <div>{this.renderChallengeStack()}</div>;
+    return <div>{this.renderChallenge()}</div>;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isSignedIn: state.auth.isSignedIn,
-    userId: state.auth.userId,
+    activeChallenge: state.activeChallenge,
   };
 };
 

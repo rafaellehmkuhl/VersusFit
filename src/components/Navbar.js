@@ -2,26 +2,25 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 import GoogleAuth from "./GoogleAuth";
+import UserChallengeList from "./UserChallengeList";
+import { connect } from "react-redux";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
+  renderUserChallengesList() {
+    if (this.props.isSignedIn) {
+      return <UserChallengeList userId={this.props.userId} />;
+    } else {
+      return <Menu.Item>Loading challenges</Menu.Item>;
+    }
+  }
+
   render() {
     return (
       <div>
         <Menu>
-          <Link to="/">
-            <Menu.Item name="Home" />
-          </Link>
+          {this.renderUserChallengesList()}
           <Link to="/create-challenge">
             <Menu.Item name="NewChallenge" />
-          </Link>
-          <Link to="/que-time">
-            <Menu.Item name="QueTimeFalaMandarim" />
-          </Link>
-          <Link to="/rafa-emily">
-            <Menu.Item name="RafaEmily" />
-          </Link>
-          <Link to="/danilo-bia">
-            <Menu.Item name="Danilo-Bia" />
           </Link>
           <Menu.Menu position="right">
             <GoogleAuth />
@@ -31,3 +30,12 @@ export default class Navbar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    userId: state.auth.userId,
+  };
+};
+
+export default connect(mapStateToProps, {})(Navbar);

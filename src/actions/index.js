@@ -9,8 +9,16 @@ import {
   UPDATE_USER_GOAL,
   DELETE_USER_GOAL,
   FETCH_USERS,
+  SET_ACTIVE_CHALLENGE,
 } from "./types";
 import goalsAPI from "../apis/goalsAPI";
+
+export const setActiveChallenge = (challenge) => {
+  return {
+    type: SET_ACTIVE_CHALLENGE,
+    payload: challenge,
+  };
+};
 
 export const fetchChallengerGoals = (user_id) => async (dispatch) => {
   const response = await goalsAPI.get(`/user_goals/${user_id}`);
@@ -55,10 +63,13 @@ export const addChallenge = (challenge) => async (dispatch) => {
 
 export const addChallengeUser = (challengeId, userId) => async (dispatch) => {
   const user = { userId };
-  const response = await goalsAPI.post(`/challenge/${challengeId}`, user);
+  await goalsAPI.post(`/challenge/${challengeId}`, user);
   dispatch({
     type: ADD_CHALLENGE_USER,
-    payload: response.data,
+    payload: {
+      challengeId,
+      userId,
+    },
   });
 };
 

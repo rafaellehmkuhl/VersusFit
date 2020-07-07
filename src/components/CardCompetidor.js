@@ -1,7 +1,7 @@
 import React from "react";
 import GoalItem from "./GoalItem";
 import NewGoalButton from "./NewGoalButton";
-import { Segment, Divider, Table } from "semantic-ui-react";
+import { Segment, Table, Menu } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchChallengerGoals } from "../actions";
 import goalsAPI from "../apis/goalsAPI";
@@ -29,34 +29,35 @@ class CardCompetidor extends React.Component {
   render() {
     return (
       <div>
-        <Segment attached="top" textAlign="center">
-          {this.props.challenge_name}
+        <Segment attached>
+          <Menu fluid vertical>
+            <Menu.Item className="header">{this.state.user_name}</Menu.Item>
+            <Menu.Item>
+              <Table celled unstackable compact>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>Objetivo</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">D</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">T</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center"></Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Body>{this.renderGoalsList()}</Table.Body>
+              </Table>
+            </Menu.Item>
+            <Menu.Item>
+              <NewGoalButton
+                user_id={this.props.user_id}
+                challenge_id={this.props.challenge_id}
+              />
+            </Menu.Item>
+          </Menu>
         </Segment>
-        <Segment attached="top" textAlign="center">
-          {this.state.user_name}
-        </Segment>
-        <Table celled unstackable compact>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Objetivo</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">D</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">T</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
-              <Table.HeaderCell textAlign="center"></Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>{this.renderGoalsList()}</Table.Body>
-        </Table>
-
-        <Divider />
-        <NewGoalButton
-          user_id={this.props.user_id}
-          challenge_id={this.props.challenge_id}
-        />
       </div>
     );
   }
