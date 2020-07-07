@@ -1,7 +1,7 @@
 import React from "react";
 import GoalItem from "./GoalItem";
 import NewGoalButton from "./NewGoalButton";
-import { Segment, Table, Menu } from "semantic-ui-react";
+import { Segment, Table, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { fetchChallengerGoals } from "../actions";
 import goalsAPI from "../apis/goalsAPI";
@@ -29,35 +29,33 @@ class CardCompetidor extends React.Component {
   render() {
     return (
       <div>
+        {/* <Segment attached> */}
+        <Header as="h4" attached="top" block>
+          {this.state.user_name}
+        </Header>
+        <Table attached size="small" basic celled unstackable compact>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Objetivo</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">D</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">T</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
+              <Table.HeaderCell textAlign="center"></Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{this.renderGoalsList()}</Table.Body>
+        </Table>
         <Segment attached>
-          <Menu fluid vertical>
-            <Menu.Item className="header">{this.state.user_name}</Menu.Item>
-            <Menu.Item>
-              <Table celled unstackable compact>
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Objetivo</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">D</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">T</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">Q</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center">S</Table.HeaderCell>
-                    <Table.HeaderCell textAlign="center"></Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-                <Table.Body>{this.renderGoalsList()}</Table.Body>
-              </Table>
-            </Menu.Item>
-            <Menu.Item>
-              <NewGoalButton
-                user_id={this.props.user_id}
-                challenge_id={this.props.challenge_id}
-              />
-            </Menu.Item>
-          </Menu>
+          <NewGoalButton
+            user_id={this.props.user_id}
+            challenge_id={this.props.challenge_id}
+          />
         </Segment>
+        {/* </Segment> */}
       </div>
     );
   }

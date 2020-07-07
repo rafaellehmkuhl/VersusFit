@@ -10,8 +10,8 @@ class ChallengesStack extends React.Component {
   renderChallenge(challenge) {
     return (
       <div>
-        <Container style={{ paddingBottom: "5em" }} text>
-          <Header as="h4" attached="top" block>
+        <Container style={{ paddingBottom: "5em" }}>
+          <Header as="h2" attached="top" block>
             {challenge.name}
           </Header>
           {challenge.users.map((user) => {
