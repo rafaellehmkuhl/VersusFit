@@ -13,11 +13,12 @@ import {
 } from "./types";
 import goalsAPI from "../apis/goalsAPI";
 
-export const setActiveChallenge = (challenge) => {
-  return {
+export const setActiveChallenge = (challengeId) => async (dispatch) => {
+  const response = await goalsAPI.get(`/challenge/${challengeId}`);
+  dispatch({
     type: SET_ACTIVE_CHALLENGE,
-    payload: challenge,
-  };
+    payload: response.data,
+  });
 };
 
 export const fetchChallengerGoals = (user_id) => async (dispatch) => {

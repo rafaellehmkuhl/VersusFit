@@ -10,7 +10,7 @@ class UserChallengeList extends Component {
   }
 
   handleClick = (e, { selectedChallenge }) => {
-    this.props.setActiveChallenge(selectedChallenge);
+    this.props.setActiveChallenge(selectedChallenge.id);
   };
 
   render() {
