@@ -1,33 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid } from "semantic-ui-react";
-import CardCompetidor from "./CardCompetidor";
+import { Container } from "semantic-ui-react";
+import ChallengeStack from "./ChallengesStack";
 
 class Home extends Component {
-  renderGoalList() {
-    if (this.props.isSignedIn) {
-      return (
-        <div>
-          <Grid rows={1} centered divided>
-            <Grid.Row>
-              <CardCompetidor user_id={this.props.userId} />
-            </Grid.Row>
-          </Grid>
-        </div>
-      );
+  renderChallenge() {
+    if (this.props.activeChallenge) {
+      return <ChallengeStack challenge={this.props.activeChallenge} />;
     } else {
-      return <div>Not signed in</div>;
+      return (
+        <Container style={{ paddingTop: "5em", paddingBottom: "5em" }} text>
+          Pick a challenge at the top or create a new challenge with your
+          friends!
+        </Container>
+      );
     }
   }
   render() {
-    return <div>{this.renderGoalList()}</div>;
+    return <div>{this.renderChallenge()}</div>;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isSignedIn: state.auth.isSignedIn,
-    userId: state.auth.userId,
+    activeChallenge: state.activeChallenge,
   };
 };
 

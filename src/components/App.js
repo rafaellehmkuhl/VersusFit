@@ -7,6 +7,7 @@ import ChallengeTable from "./ChallengeTable";
 import ChallengeTable2 from "./ChallengeTable2";
 import LoginScreen from "./LoginScreen";
 import RegisterScreen from "./RegisterScreen";
+import CreateChallenge from "./CreateChallenge";
 import Home from "./Home";
 
 class App extends React.Component {
@@ -24,6 +25,11 @@ class App extends React.Component {
               <Route path="/danilo-bia" exact component={ChallengeTable2} />
               <Route path="/login" exact component={LoginScreen} />
               <Route path="/register" exact component={RegisterScreen} />
+              <Route
+                path="/create-challenge"
+                exact
+                component={CreateChallenge}
+              />
             </Segment>
           </div>
         </BrowserRouter>
