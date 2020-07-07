@@ -3,10 +3,6 @@ import { Header, Container } from "semantic-ui-react";
 import CardCompetidor from "./CardCompetidor";
 
 class ChallengesStack extends React.Component {
-  componentDidMount() {
-    console.log(this.props.challenge);
-  }
-
   renderChallenge(challenge) {
     return (
       <div>
