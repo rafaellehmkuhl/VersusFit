@@ -12,7 +12,11 @@ class ChallengesStack extends React.Component {
           </Header>
           {challenge.users.map((user) => {
             return (
-              <CardCompetidor challenge_id={challenge.id} user_id={user.id} />
+              <CardCompetidor
+                key={user.id}
+                challenge_id={challenge.id}
+                user_id={user.id}
+              />
             );
           })}
           <Header as="h4" attached="bottom" block></Header>

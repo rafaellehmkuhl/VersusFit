@@ -9,8 +9,8 @@ class UserChallengeList extends Component {
     this.props.fetchUserChallenges(this.props.userId);
   }
 
-  handleClick = (e, { selectedChallenge }) => {
-    this.props.setActiveChallenge(selectedChallenge.id);
+  handleClick = (challengeId) => (e) => {
+    this.props.setActiveChallenge(challengeId);
   };
 
   render() {
@@ -22,8 +22,8 @@ class UserChallengeList extends Component {
               {this.props.challenges.map((challenge) => {
                 return (
                   <Dropdown.Item
-                    selectedChallenge={challenge}
-                    onClick={this.handleClick}
+                    key={challenge.id}
+                    onClick={this.handleClick(challenge.id)}
                     as={Link}
                     to="/"
                   >
