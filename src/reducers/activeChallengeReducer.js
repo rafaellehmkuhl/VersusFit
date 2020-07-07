@@ -1,5 +1,4 @@
 import { SET_ACTIVE_CHALLENGE } from "../actions/types";
-import _ from "lodash";
 
 const activeChallengeReducer = (state = null, action) => {
   switch (action.type) {
